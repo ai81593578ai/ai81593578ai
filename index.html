@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <title>我的请假凭证</title>
+  <title>生成请假凭证</title>
   <style>
     body {
       background-color: #f3f3f3
@@ -41,12 +41,12 @@
       display: flex
     }
 
-    .left-div {
-      flex-basis: 115px;
-      padding-left: 15px
+    .context input{
+      width: 22px;
     }
 
-    .left-div div {
+    .left-div div,
+    .right-div div {
       color: #6060ca;
       font-size: 15px;
       text-align: left;
@@ -58,16 +58,12 @@
     }
 
     .right-div {
-      text-align: left;
+      /* text-align: left;
       margin-top: 15px;
       padding-left: 13px;
       padding-right: 10px;
       font-size: 12px;
-      border-left: 1px solid #e3e3e3
-    }
-
-    .right-div div {
-      padding-bottom: 8px
+      border-left: 1px solid #e3e3e3 */
     }
 
     .bottom {
@@ -77,11 +73,6 @@
       text-align: left;
       font-size: 25px
     }
-
-    .code img {
-      width: 112px;
-      height: 112px
-    }
   </style>
 </head>
 
@@ -90,28 +81,40 @@
     <div class="card">
       <div class="top">广东二师请假审批通过凭证</div>
       <div class="context">
+
         <div class="left-div">
-          <div class="name">李奕晓</div>
-          <div class="school">文学院</div>
-          <div class="id">20550301072</div>
-          <div class="clazz">20语文教育B</div>
+          <div>请假开始月：<input id="startm" type="text" /></div>
+          <div>请假开始日：<input id="startd" type="text" /></div>
+          <div>请假开始时：<input id="starth" type="text" /></div>
         </div>
+
         <div class="right-div">
-          <div class="tip">请假起止时间：</div>
-          <div class="time1">2021年9月18日17时-</div>
-          <div class="time2">2021年9月18日20时</div>
-          <div class="code" onclick="linklove()"><img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFXUlEQVR4nO3dy24cNxAFUCvId2eR7w4gr0MBpApVl90WztkZ7mHPjC6Iag4fH5+fn79g2l9PvwF+JsEiQrCIECwi/l7//c/HtXv/9+//nhuWWy//u9hffPwUg43vm2o2XjLYVPPWv/RYhAgWEYJFhGAR8bGMvDcr042vteRg41W5j9l8J4tSPX68OPfXVLxziWARIVhECBYR68j74erKYG6zVIwOxM8Oppd07jU7th79a+qxiBAsIgSLCMEiola8R+1ryX3NWy3GO3NXmhX04GShN9NjESFYRAgWEYJFxIuK99yU7eYEkk5pX/UHled7eiwiBIsIwSJCsIioFe8354aXSuZqzdsZx++0fGytNC7frPSjf009FhGCRYRgESFYRByK95sDwYMTz6Nz3pv19YN7wty8lx6LCMEiQrCIECwiBIuI9anwwQ19Hrz1YnCJcHUdx/7lN1eiN+mxiBAsIgSLCMEiorWN0c01wTfL2Oh8rI79G4uebFC9WI9FhGARIVhECBYRtdO/ZtcEDz4KzD5GdBqP7rxa+t/mLLTmx9RjESFYRAgWEYJFRG3aTGdsN1pL7lv+zpv5/jvZ36t5anD0ZIPBc4GP9FhECBYRgkWEYBFxOLp38WNKy0E3DxDY3/rBNdamzXCJYBEhWEQIFhFr8T5otnicPRZr8Aiumw80s/canKKjeOcSwSJCsIgQLCImF6wuogPx0RNvO0Xx7B6kswX1zc1q9FhECBYRgkWEYBHx5Mj7YBnbufioObW/0/iDi2Ob9FhECBYRgkWEYBEhWET8qdsY3ZyetW98v1dq1exGoJ1bl5iPxSWCRYRgESFYRBx+0pndt2iRW7l7s4x9cP3xXvPgMYspeCPBIkKwiBAsIg7bGA1W69VaMldpfueC75udxjS4OvkmxTuXCBYRgkWEYBFRG3lfNEvLwf02m3K7BT14bEL1C59dJ63HIkKwiBAsIgSLiMM2Rp1asrqrzmA9Ptty9ByywVs3v/DZcXw9FhGCRYRgESFYRNSmzTw4BT46ReQ9808Ws5s33TwjTY9FhGARIVhECBYR68j7YBlbrfTfs2D15r0GJ8Y0z0ko3cu0GZ4hWEQIFhGCRcRhq8gHp2CXGm8afEZpiu6XefPUBT0WEYJFhGARIVhECBYRrZXQi/c8qVXldmuKformvaJ7OemxiBAsIgSLCMEi4rCYYm/2CK5BN6vawfUmX+XWtjQ5QIBnCBYRgkWEYBFxWExRa6t3gMD++tkzbXNnFxwNVtzV1948nUCPRYRgESFYRAgWEcFtjJoj79Hh79zBCDeH2hfNWr7ESmieIVhECBYRgkVEbc777Fb6g4Vqs6q9+VCyyN1r9vcG2xjxCoJFhGARIVhETI68v2dT/9kx6NkvIfeM0jR7krIeiwjBIkKwiBAsIg4j7zflZozMTuBpNn5zVUGntT0j7zxDsIgQLCIEi4jDAQJRSwHYGWVurpXNbZo4u4t/6X1WT2yYncuvxyJCsIgQLCIEiwjBImJ9KlwMbmt5fNS6trbiaPA3nOgOStVb73Uew83H4hLBIkKwiBAsIg7F+3r1xcPABjcdbW4T2nnt17fd/Flm6uIqe5DyCoJFhGARIVhE1Ir3qMGlz9GR973qDwyldzL7jDJ4YPFXeiwiBIsIwSJCsIh4UfFeGoNuVrWD5fl+SUjT7OrwzjdcfVDQYxEhWEQIFhGCRURtD9KOagXdeSfNo3tLjS9mj9PtvPbZDUv1WEQIFhGCRYRgEXEo3qNy0zaiBwjsXzs7lWVw4n/1+uYXrsciQrCIECwiBIuIFx0gwE+ixyJCsIgQLCIEiwjBIuI3FA/uLwp8NN8AAAAASUVORK5CYII="
-              alt="" /></div>
+          <div>请假结束月：<input id="endm" type="text" /></div>
+          <div>请假结束日：<input id="endd" type="text" /></div>
+          <div>请假结束时：<input id="endh" type="text" /></div>
         </div>
       </div>
-      <div class="bottom">离校</div>
+
+      <div class="bottom">
+        <input type="button" value="生成进校" onclick="generate('no')">
+        <input type="button" value="生成离校" onclick="generate('yes')">
+      </div>
     </div>
   </div>
 </body>
 <script>
-  function linklove(){
-    window.location.href = 'https://ai81593578ai.github.io/ai81593578ai/love.html';
+  function generate(getout) {
+    let startm = document.getElementById("startm").value;
+    let startd = document.getElementById("startd").value;
+    let starth = document.getElementById("starth").value;
+
+    let endm = document.getElementById("endm").value;
+    let endd = document.getElementById("endd").value;
+    let endh = document.getElementById("endh").value;
+    let url = "/show.html?startmonth=" + startm + "&startday=" + startd + "&starthour=" + starth +
+      "&endmonth=" + endm + "&endday=" + endd + "&endhour=" + endh + "&getout=" + getout;
+    window.location.href = url;
   }
 </script>
+
 </html>
